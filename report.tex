@@ -1,0 +1,65 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{hyperref}
+\usepackage{listings}
+
+\title{Relazione per ``Programmazione di Reti'' \\Progetto ``Traccia 3: Monitoraggio di Rete''}
+\author{Casali Marco 0001079736 \\ marco.casali13@studio.unibo.it \\ Università di Bologna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Monitoraggio Di Rete}
+
+\section{Introduzione}
+
+L'obbiettivo del progetto è l'implementazione di uno script Python che permette di monitorare lo 
+stato (Offline/Online) di più host di rete tramite il protocollo ICMP (ping).
+L'utente deve quindi essere in grado di aggiungere un host al monitor e aggiornare lo stato 
+di tutti gli host monitorati.
+
+\section{Requisiti}
+
+Python 3 \url{https://www.python.org/}
+
+\section{Utilizzo}
+
+Aprire un terminale ed eseguire `python net\_monitor.py`
+
+\subsection{Aggiungere un host al monitor}
+
+Per aggiungere un host al monitor digitare l'indirizzo IP
+e premere invio.
+
+\subsection{Aggiornare lo stato degli host}
+
+Per aggiornare lo stato degli host premere invio senza digitare
+nulla.
+
+\subsection{Terminare lo script}
+
+Per terminare lo script digitare `q` e premere invio.
+
+\section{Funzionamento}
+
+Lo script mantiene un dizionario degli host inseriti e ogni volta che ne viene 
+inserito uno nuovo o viene fatta richiesta di aggiornamento, viene eseguito un ping
+di un singolo pacchetto verso ogni indirizzo IP salvato nell'insieme delle chiavi del
+dizionario che aggiorna il relativo valore Offline/Online, infine l'intero dizionario 
+viene stampato.
+
+\section{Considerazioni Aggiuntive}
+
+\begin{itemize}
+	\item Lo script dipende dal sistema operativo per l'esecuzione del ping ma è stato implementato 
+    per funzionare almeno su Linux e Windows.
+	\item Se nella lista è presente un alto numero di host offline il tempo per aggiornare aumenta
+    significativamente quindi per mantenere una buona responsività l'esecuzione del ping dovrebbe
+    essere eseguita in multithreading.
+\end{itemize}
+
+\end{document}
